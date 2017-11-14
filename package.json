@@ -1,0 +1,30 @@
+{
+  "name": "zeloapi",
+  "version": "1.0.0",
+  "description": "Mock da zelo para cartões presente e fidelidade",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://jbarcela@bitbucket.org/jbarcela/mock-zeloapi.git"
+  },
+  "keywords": [
+    "zelo",
+    "api",
+    "mock"
+  ],
+  "author": "Jonathan Barcela",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/jbarcela/mock-zeloapi#readme",
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-validator": "^4.3.0",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.13.2"
+  }
+}
