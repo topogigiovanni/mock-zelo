@@ -71,19 +71,22 @@ exports.capture = function(request, response){
 		var orderNumber = request.body.ordernumber;
   		var cards = request.body.cards;
 
+
   		var arrayCards = new Array();
   		_.forEach(cards, function (c){
     		repository.Find(c.card_id, c.email, function(card){
       			if(card == null)
       				response.send("Cartão " + c.card_id + "não encontrado");
 
+      			if(!card.is_valid){
+      				response.send("Cartão " + c.card_id + " inválido");
+      			}
+
       			card.is_valid = false;
       			repository.Update(card);
       			arrayCards.push(card);
     		});
   		});
-
-  		response.json(arrayCards);
 	}
 	catch(err){
 		response.status(500);
