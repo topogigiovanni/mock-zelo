@@ -1,0 +1,208 @@
+{
+	"id": "ef58e27d-b434-4bb7-dc57-635524d1a583",
+	"name": "Zelo-api",
+	"description": "",
+	"order": [
+		"4765f49d-2d7a-2f6e-f468-7c46dc802954",
+		"c255b6cb-2818-a8d6-fc73-3ddea5fee925",
+		"9ff2fc3e-b40f-5e72-5e52-4d838c09ef13",
+		"a36b637a-bb9b-045b-8b7d-f2ffcda3734b",
+		"68fe711c-0fd2-8bca-c3cb-fde443804a8b",
+		"2efc0b20-6ba8-c99f-5b71-b2e2fce9ddfe",
+		"3c818d15-8f64-f7b3-bab3-01806775d516"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1510833498064,
+	"owner": "2262042",
+	"public": false,
+	"requests": [
+		{
+			"id": "2efc0b20-6ba8-c99f-5b71-b2e2fce9ddfe",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://zeloapi.herokuapp.com/loyaltycard/balance",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1510840955752,
+			"name": "/loyaltycard/balance",
+			"description": "",
+			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
+			"responses": [],
+			"rawModeData": "{\n\t\"card_id\": \"some value\",\n\t\"document_number\": \"03970157048\",\n\t\"email\": \"some value\"\n}"
+		},
+		{
+			"id": "3c818d15-8f64-f7b3-bab3-01806775d516",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://zeloapi.herokuapp.com/loyaltycard/capture",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1510840961560,
+			"name": "/loyaltycard/capture",
+			"description": "",
+			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
+			"responses": [],
+			"rawModeData": "{\n\t\"order_number\": \"123144123\",\n\t\"card\": {\n\t\t\"card_id\": \"some value\",\n\t\t\"document_number\": \"03970157048\",\n\t\t\"email\": \"some value\"\n\t},\n\t\"value\": 160\n\t\n}"
+		},
+		{
+			"id": "4765f49d-2d7a-2f6e-f468-7c46dc802954",
+			"headers": "",
+			"headerData": [],
+			"url": "https://zeloapi.herokuapp.com/giftcard",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1510840898280,
+			"name": "/giftcard",
+			"description": "",
+			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
+			"responses": []
+		},
+		{
+			"id": "68fe711c-0fd2-8bca-c3cb-fde443804a8b",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://zeloapi.herokuapp.com/loyaltycard/create",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1510840951094,
+			"name": "/loyaltycard/create",
+			"description": "",
+			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
+			"responses": [],
+			"rawModeData": "{\n\t\"card_id\": \"LO-00001\",\n\t\"message\": \"teste salvar cartao fidelidade\",\n\t\"is_valid\": true,\n\t\"balance\": \"200\",\n\t\"email\": \"jonathan.barcela@ezcommerce.com.br\",\n\t\"document_number\": \"03970157048\"\n}"
+		},
+		{
+			"id": "9ff2fc3e-b40f-5e72-5e52-4d838c09ef13",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://zeloapi.herokuapp.com/giftcard/capture",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1510840926535,
+			"name": "/giftcard/capture",
+			"description": "",
+			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
+			"responses": [],
+			"rawModeData": "{\n\t\"ordernumber\": \"5050050\",\n\t\"cards\": [\n\t\t{\n\t\t\t\"card_id\": 5001,\n\t\t\t\"email\": \"\"\n\t\t}\n\t]\n\n\n}"
+		},
+		{
+			"id": "a36b637a-bb9b-045b-8b7d-f2ffcda3734b",
+			"headers": "",
+			"headerData": [],
+			"url": "https://zeloapi.herokuapp.com/loyaltycard",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1510840944863,
+			"name": "/loyaltycard",
+			"description": "",
+			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
+			"responses": []
+		},
+		{
+			"id": "c255b6cb-2818-a8d6-fc73-3ddea5fee925",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://zeloapi.herokuapp.com/giftcard/create",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1510840906663,
+			"name": "/giftcard/create",
+			"description": "",
+			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
+			"responses": [],
+			"rawModeData": "{\n\t\"card_id\": \"8001\",\n\t\"message\": \"teste salvar cartao\",\n\t\"is_valid\": true,\n\t\"balance\": \"70.10\",\n\t\"email\": \"jonathan.barcela@ezcommerce.com.br\"\n}"
+		}
+	]
+}
