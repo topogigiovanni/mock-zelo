@@ -1,7 +1,7 @@
 'use strict'
 
 var _ = require('lodash');
-var repository = require('../repositories/GiftCardRepository');
+var repository = require('../repositories/giftCardRepository');
 
 exports.list = function(request, response){
   try{
