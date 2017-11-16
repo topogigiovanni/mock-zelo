@@ -8,7 +8,7 @@ var express = require('express'),
   expressValidator = require('express-validator');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/zeloapi')
+mongoose.connect('mongodb://heroku_c1t9lvvm:J82237199@ds111336.mlab.com:11336/heroku_c1t9lvvm')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
