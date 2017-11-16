@@ -42,7 +42,6 @@ function Create(card){
 function Update(card){
   card = card.toObject();
   delete card._id;
-  console.log(card);
   GiftCard.findOneAndUpdate({ card_id: card.card_id}, {$set:card}, {new: true}, function(err, card){
     if(err){
       console.log('erro ao atualizar cartão - ' + err);

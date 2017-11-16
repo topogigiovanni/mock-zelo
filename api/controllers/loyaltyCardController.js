@@ -1,7 +1,7 @@
 'use strict'
 
 var _ = require('lodash');
-var repository = require('../repositories/GiftCardRepository');
+var repository = require('../repositories/loyaltyCardRepository');
 
 exports.list = function(request, response){
   try{
@@ -40,7 +40,7 @@ exports.create = function(request, response){
 
 exports.find = function(request, response){
 	try	{
-		request.assert('cardId', 'Preencha o cardId na queryString').notEmpty();
+		request.assert('cardId', 'Preencha o cardId na querystring').notEmpty();
 		var errors = request.validationErrors();
 
 		if(errors){
@@ -51,7 +51,7 @@ exports.find = function(request, response){
 		else{
 			var cardId = request.query.cardId;
 
-			repository.Find(cardId, "", function(card){
+			repository.Find(cardId, "", "", function(card){
       			if(card == null)
       				response.send("Cartão não encontrado");
 
@@ -65,26 +65,48 @@ exports.find = function(request, response){
 	}
 }
 
+exports.balance = function(request, response){
+	try	{
+		console.log(request.body);
+		var cardId = request.body.card_id;
+  		var documentNumber = request.body.document_number;
+  		var email = request.body.email;
+
+		repository.Find(cardId, email, documentNumber, function(card){
+  			if(card == null)
+  				response.send("Cartão não encontrado");
+
+  			response.json(card);
+		});
+      	
+	}
+	catch(err){
+		response.status(500);
+		response.send("Não foi possível encontrar o cartão");
+	}
+}
+
 exports.capture = function(request, response){
 	try{
 		var orderNumber = request.body.ordernumber;
-  		var cards = request.body.cards;
+  		var card = request.body.card;
+  		var value = request.body.value;
 
-  		var arrayCards = new Array();
-  		_.forEach(cards, function (c){
-    		repository.Find(c.card_id, c.email, function(card){
-      			if(card == null)
-      				response.send("Cartão " + c.card_id + "não encontrado");
-
-      			if(!card.is_valid){
-      				response.send("Cartão " + c.card_id + " inválido");
+  		repository.Find(card.card_id, card.email, card.document_number, function(c){
+      			if(c == null)
+      				response.send("Cartão não encontrado");
+      			else if(!c.is_valid){
+      				response.send("Cartão inválido");
       			}
-
-      			card.is_valid = false;
-      			repository.Update(card);
-      			arrayCards.push(card);
+      			else if(c.balance < value){
+      				response.send("Saldo insuficiente. Saldo Atual: " + c.balance);
+      			}
+      			else{
+      				c.balance = c.balance - value;
+      				repository.Update(c);
+      				response.json(c);
+      			}
     		});
-  		});
 	}
 	catch(err){
 		response.status(500);

@@ -3,6 +3,7 @@ var express = require('express'),
   port = process.env.PORT || 5000,
   mongoose = require('mongoose'),
   GiftCard = require('./api/models/giftCardModel'),
+  LoyaltyCard = require('./api/models/loyaltyCardModel')
   bodyParser = require('body-parser'),
   expressValidator = require('express-validator');
 
@@ -14,7 +15,7 @@ app.use(bodyParser.json());
 
 app.use(expressValidator());
 
-var routes = require('./api/routes/giftCardRoutes');
+var routes = require('./api/routes/CardRoutes');
 routes(app);
 
 app.listen(port);
