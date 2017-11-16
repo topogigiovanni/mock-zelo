@@ -3,6 +3,7 @@
 module.exports = function(app){
 	var giftCard = require('../controllers/giftCardController');
 	var loyaltyCard = require('../controllers/loyaltyCardController');
+	var transaction = require('../controllers/transactionController');
 
   	//giftcard routes
 	app.route('/giftcard')
@@ -33,5 +34,13 @@ module.exports = function(app){
 
 	app.route('/loyaltycard/capture')
 		.post(loyaltyCard.capture);
+
+
+	//transaction routes
+	app.route('/transaction')
+		.get(transaction.list);
+
+	app.route('/transaction/find')
+		.get(transaction.find);
   
 };

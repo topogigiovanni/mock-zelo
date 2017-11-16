@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var repository = require('../repositories/loyaltyCardRepository');
+var transactionRepository = require('../repositories/transactionRepository');
 
 exports.list = function(request, response){
   try{
@@ -10,6 +11,7 @@ exports.list = function(request, response){
     });
   }
   catch(err){
+  	response.status(500);
     response.send(err);
   }
 }
@@ -52,8 +54,10 @@ exports.find = function(request, response){
 			var cardId = request.query.cardId;
 
 			repository.Find(cardId, "", "", function(card){
-      			if(card == null)
+      			if(card == null){
+      				response.status(400);
       				response.send("Cartão não encontrado");
+      			}
 
       			response.json(card);
     		});
@@ -73,8 +77,10 @@ exports.balance = function(request, response){
   		var email = request.body.email;
 
 		repository.Find(cardId, email, documentNumber, function(card){
-  			if(card == null)
+  			if(card == null){
+  				response.status(400);
   				response.send("Cartão não encontrado");
+  			}
 
   			response.json(card);
 		});
@@ -93,18 +99,34 @@ exports.capture = function(request, response){
   		var value = request.body.value;
 
   		repository.Find(card.card_id, card.email, card.document_number, function(c){
-      			if(c == null)
+      			if(c == null){
+      				response.status(400);
       				response.send("Cartão não encontrado");
+      			}
       			else if(!c.is_valid){
+      				response.status(400);
       				response.send("Cartão inválido");
       			}
       			else if(c.balance < value){
+      				response.status(400);
       				response.send("Saldo insuficiente. Saldo Atual: " + c.balance);
       			}
       			else{
       				c.balance = c.balance - value;
       				repository.Update(c);
-      				response.json(c);
+
+      				transactionRepository.Create(card.card_id, "loyaltycard", orderNumber, c.balance, function(transactionId){
+	      				var responseCard = {
+		    				'transaction_id': transactionId,
+		    				'card_id': c.card_id,
+		    				'document_number': c.document_number,
+		    				'email': c.email,
+		    				'is_valid': c.is_valid,
+		    				'balance': c.balance,
+		    				'message': c.message
+	    				}
+						response.json(responseCard);
+    				});
       			}
     		});
 	}

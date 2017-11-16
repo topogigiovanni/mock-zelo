@@ -9,7 +9,8 @@
 		"a36b637a-bb9b-045b-8b7d-f2ffcda3734b",
 		"68fe711c-0fd2-8bca-c3cb-fde443804a8b",
 		"2efc0b20-6ba8-c99f-5b71-b2e2fce9ddfe",
-		"3c818d15-8f64-f7b3-bab3-01806775d516"
+		"3c818d15-8f64-f7b3-bab3-01806775d516",
+		"754be04b-6eb8-1ee5-a0e5-a0b46543c577"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -68,12 +69,12 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1510840961560,
+			"time": 1510854403022,
 			"name": "/loyaltycard/capture",
 			"description": "",
 			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
 			"responses": [],
-			"rawModeData": "{\n\t\"order_number\": \"123144123\",\n\t\"card\": {\n\t\t\"card_id\": \"some value\",\n\t\t\"document_number\": \"03970157048\",\n\t\t\"email\": \"some value\"\n\t},\n\t\"value\": 160\n\t\n}"
+			"rawModeData": "{\n\t\"order_number\": \"123144123\",\n\t\"card\": {\n\t\t\"card_id\": \"LO-00003\",\n\t\t\"document_number\": \"as\",\n\t\t\"email\": \"some value\"\n\t},\n\t\"value\": 50\n\t\n}"
 		},
 		{
 			"id": "4765f49d-2d7a-2f6e-f468-7c46dc802954",
@@ -118,12 +119,35 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1510840951094,
+			"time": 1510853463715,
 			"name": "/loyaltycard/create",
 			"description": "",
 			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
 			"responses": [],
-			"rawModeData": "{\n\t\"card_id\": \"LO-00001\",\n\t\"message\": \"teste salvar cartao fidelidade\",\n\t\"is_valid\": true,\n\t\"balance\": \"200\",\n\t\"email\": \"jonathan.barcela@ezcommerce.com.br\",\n\t\"document_number\": \"03970157048\"\n}"
+			"rawModeData": "{\r\n                                        \"card_id\": \"LO-00002\",\r\n                                        \"message\": \"Mensagem cartão fidelidade\",\r\n                                        \"is_valid\": true,\r\n                                        \"balance\": \"200\",\r\n                                        \"email\": \"email@ezcommerce.com.br\",\r\n                                        \"document_number\": \"74151037268\"\r\n                                    }"
+		},
+		{
+			"id": "754be04b-6eb8-1ee5-a0e5-a0b46543c577",
+			"headers": "",
+			"headerData": [],
+			"url": "https://zeloapi.herokuapp.com/transaction",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
+			"data": null,
+			"dataMode": "params",
+			"name": "/transaction",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1510854439492,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
 		},
 		{
 			"id": "9ff2fc3e-b40f-5e72-5e52-4d838c09ef13",
@@ -147,12 +171,12 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1510840926535,
+			"time": 1510854519636,
 			"name": "/giftcard/capture",
 			"description": "",
 			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
 			"responses": [],
-			"rawModeData": "{\n\t\"ordernumber\": \"5050050\",\n\t\"cards\": [\n\t\t{\n\t\t\t\"card_id\": 5001,\n\t\t\t\"email\": \"\"\n\t\t}\n\t]\n\n\n}"
+			"rawModeData": "{\n\t\"ordernumber\": \"123123123\",\n\t\"cards\": [\n\t\t{\n\t\t\t\"card_id\": \"GC-00005\",\n\t\t\t\"email\": \"email\"\n\t\t},\n\t\t{\n\t\t\t\"card_id\": \"GC-00005\",\n\t\t\t\"email\": \"email\"\n\t\t}\n\t]\n}"
 		},
 		{
 			"id": "a36b637a-bb9b-045b-8b7d-f2ffcda3734b",
@@ -197,12 +221,12 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1510840906663,
+			"time": 1510846640617,
 			"name": "/giftcard/create",
 			"description": "",
 			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
 			"responses": [],
-			"rawModeData": "{\n\t\"card_id\": \"8001\",\n\t\"message\": \"teste salvar cartao\",\n\t\"is_valid\": true,\n\t\"balance\": \"70.10\",\n\t\"email\": \"jonathan.barcela@ezcommerce.com.br\"\n}"
+			"rawModeData": "{\r\n    \"card_id\": \"GC-00001\",\r\n    \"message\": \"Mensagem cartão presente\",\r\n    \"balance\": \"100.50\",\r\n    \"email\": \"email@ezcommerce.com.br\"\r\n}"
 		}
 	]
 }

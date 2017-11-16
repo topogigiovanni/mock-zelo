@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var repository = require('../repositories/giftCardRepository');
+var transactionRepository = require('../repositories/transactionRepository');
 
 exports.list = function(request, response){
   try{
@@ -67,27 +68,56 @@ exports.find = function(request, response){
 
 exports.capture = function(request, response){
 	try{
-		var orderNumber = request.body.ordernumber;
+		var orderNumber = request.body.order_number;
   		var cards = request.body.cards;
 
   		var arrayCards = new Array();
-  		_.forEach(cards, function (c){
-    		repository.Find(c.card_id, c.email, function(card){
-      			if(card == null)
+  		var retorno;
+  		for(var i = 0; i < cards.length; i++){
+  			var c = cards[i];
+  			var cont = 0;
+  			repository.Find(c.card_id, c.email, function(card){
+
+  				if(retorno) return false;
+
+      			if(card == null){
+      				response.status(400);
       				response.send("Cartão " + c.card_id + "não encontrado");
+      				retorno = true;
+      			}
 
       			if(!card.is_valid){
+      				response.status(400);
       				response.send("Cartão " + c.card_id + " inválido");
+      				retorno = true;
       			}
 
       			card.is_valid = false;
       			repository.Update(card);
-      			arrayCards.push(card);
-    		});
-  		});
+      			
+      			//criar transaction referente a esta captura
+      			transactionRepository.Create(card.card_id, "giftcard", orderNumber, 0, function(transactionId){
+      				cont++;
+      				var responseCard = {
+	    				'transaction_id': transactionId,
+	    				'card_id': card.card_id,
+	    				'is_valid': card.is_valid,
+	    				'balance': card.balance,
+	    				'message': card.message
+    				}
+
+      				arrayCards.push(responseCard);
+      				
+      				if(cont == cards.length){
+    					response.json(arrayCards);
+					}
+    			});
+    		});    		
+  		}
 	}
 	catch(err){
 		response.status(500);
-		response.send("Não foi possível capturar");
+		response.send("Não foi possível capturar. Erro: " + err);
 	}
 }
+
