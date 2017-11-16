@@ -8,7 +8,13 @@ var express = require('express'),
   expressValidator = require('express-validator');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://heroku_c1t9lvvm:J82237199@ds111336.mlab.com:11336/heroku_c1t9lvvm')
+mongoose.connect('mongodb://jbarcela:Jonathan!1@ds111336.mlab.com:11336/heroku_c1t9lvvm')
+
+app.use(express.static(__dirname + '/public'));
+
+app.get('/', function(request, response) {
+  response.render('public/index');
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
