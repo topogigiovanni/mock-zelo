@@ -5,6 +5,7 @@
 	"order": [
 		"4765f49d-2d7a-2f6e-f468-7c46dc802954",
 		"c255b6cb-2818-a8d6-fc73-3ddea5fee925",
+		"3028ba37-3a55-424c-bb92-4548abf4de2a",
 		"9ff2fc3e-b40f-5e72-5e52-4d838c09ef13",
 		"a36b637a-bb9b-045b-8b7d-f2ffcda3734b",
 		"68fe711c-0fd2-8bca-c3cb-fde443804a8b",
@@ -46,6 +47,37 @@
 			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
 			"responses": [],
 			"rawModeData": "{\n\t\"card_id\": \"some value\",\n\t\"document_number\": \"03970157048\",\n\t\"email\": \"some value\"\n}"
+		},
+		{
+			"id": "3028ba37-3a55-424c-bb92-4548abf4de2a",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:5000/giftcard/balance",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
+			"data": [],
+			"dataMode": "raw",
+			"name": "/giftcard/balance",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1511198767898,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\t\"card_id\": \"GC-00001\",\n\t\"email\": \"some value\"\n}"
 		},
 		{
 			"id": "3c818d15-8f64-f7b3-bab3-01806775d516",
@@ -119,12 +151,12 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1510853463715,
+			"time": 1510920109989,
 			"name": "/loyaltycard/create",
 			"description": "",
 			"collectionId": "ef58e27d-b434-4bb7-dc57-635524d1a583",
 			"responses": [],
-			"rawModeData": "{\r\n                                        \"card_id\": \"LO-00002\",\r\n                                        \"message\": \"Mensagem cartão fidelidade\",\r\n                                        \"is_valid\": true,\r\n                                        \"balance\": \"200\",\r\n                                        \"email\": \"email@ezcommerce.com.br\",\r\n                                        \"document_number\": \"74151037268\"\r\n                                    }"
+			"rawModeData": "{\r\n    \"card_id\": \"LO-00003\",\r\n    \"message\": \"Mensagem cartão fidelidade\",\r\n    \"is_valid\": true,\r\n    \"balance\": \"100\",\r\n    \"email\": \"email@ezcommerce.com.br\",\r\n    \"document_number\": \"12345678910\"\r\n}"
 		},
 		{
 			"id": "754be04b-6eb8-1ee5-a0e5-a0b46543c577",

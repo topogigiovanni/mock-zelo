@@ -18,6 +18,9 @@ module.exports = function(app){
 	app.route('/giftcard/capture')
 		.post(giftCard.capture);
 
+	app.route('/giftcard/balance')
+		.post(giftCard.balance);
+
 
 	//loyaltycard routes
 	app.route('/loyaltycard')
