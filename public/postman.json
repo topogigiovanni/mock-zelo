@@ -59,7 +59,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:5000/giftcard/balance",
+			"url": "http://zeloapi.herokuapp.com/giftcard/balance",
 			"queryParams": [],
 			"pathVariables": {},
 			"pathVariableData": [],
