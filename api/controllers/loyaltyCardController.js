@@ -135,3 +135,69 @@ exports.capture = function(request, response){
 		response.send("Não foi possível capturar");
 	}
 }
+
+exports.statementHtml = function(request, response){
+	try{
+		var cardId = request.body.card_id;
+  		var documentNumber = request.body.document_number;
+  		var email = request.body.email;
+
+  		repository.Find(cardId, email, documentNumber, function(card){
+  			if(card == null){
+  				response.status(400);
+  				response.send("Cartão não encontrado");
+  			}
+  			GetHtml(card, function(html){
+  				var cardResponse = {
+	  				"card": {
+	  					"card_id": card.card_id,
+	  					"document_number": card.document_number,
+	  					"email": card.email,
+	  					"is_valid": card.is_valid,
+	  					"message": card.message
+	  				},
+	  				"html": html
+	  			}	
+
+  				response.json(cardResponse);
+  			});
+		});
+	}
+	catch(err){
+		response.status(500);
+		response.send("Não foi possível retornar o html");
+	}
+}
+
+
+function GetHtml(card, callback){
+	callback = callback || function(){};
+	var html = "";
+	html += "<html><body><h2>Saldo atual: " + card.balance;
+	html += " </h2><table><thead><tr><th>Transaction Id</th><th>Data</th><th>Valor</th></tr></thead><tbody>";
+
+	transactionRepository.GetAllByCard(card.card_id, function(transactions){
+		if(transactions != null){
+			for (var i = 0; i < transactions.length; i++) {
+				var transaction = transactions[i];
+
+				var date = new Date(transaction.captured_date);
+				var formattedDate = date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear();
+
+				var htmlTransaction = "<tr>";
+				htmlTransaction += "<td>"+transaction._id+"</td>";
+				htmlTransaction += "<td>"+formattedDate+"</td>";
+				htmlTransaction += "<td>"+transaction.captured_value+"</td>";
+				htmlTransaction += "</tr>";
+
+				html += htmlTransaction;
+			}
+		}
+		
+
+		html += "</tbody></table></body></html>";
+		return callback(html);
+	});
+
+	
+}

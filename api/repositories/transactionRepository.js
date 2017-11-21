@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
 module.exports = {
   GetAll: GetAll,
   Create: Create,
-  Find: Find
+  Find: Find,
+  GetAllByCard: GetAllByCard
 }
 
 function GetAll(callback){
@@ -28,6 +29,15 @@ function Find(transactionId, callback){
   });
 }
 
+
+function GetAllByCard(cardId, callback){
+  callback = callback || function(){};
+  GetAll(function(transactions){
+    var transaction = lodash.filter(transactions, function(t) { return t.card_id == cardId } );
+    return callback(transaction);
+  });
+}
+
 function Create(cardId, cardType, orderNumber, value, callback){
   try{
     callback = callback || function(){};
@@ -36,7 +46,7 @@ function Create(cardId, cardType, orderNumber, value, callback){
       "card_type": cardType,
       "order_number": orderNumber,
       "captured_value": value,
-      "created_date": Date.now()
+      "captured_date": Date.now()
     }
 
     var new_transaction = new Transaction(transaction);

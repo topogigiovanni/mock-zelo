@@ -38,6 +38,9 @@ module.exports = function(app){
 	app.route('/loyaltycard/capture')
 		.post(loyaltyCard.capture);
 
+	app.route('/loyaltycard/statementHtml')
+		.post(loyaltyCard.statementHtml);
+
 
 	//transaction routes
 	app.route('/transaction')
