@@ -6,13 +6,19 @@ var express = require('express'),
   LoyaltyCard = require('./api/models/loyaltyCardModel'),
   Transaction = require('./api/models/transactionModel')
   bodyParser = require('body-parser'),
-  expressValidator = require('express-validator');
+  expressValidator = require('express-validator'),
+  basicAuth = require('express-basic-auth');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://jbarcela:Jonathan!1@ds111336.mlab.com:11336/heroku_c1t9lvvm')
 //mongoose.connect('mongodb://localhost/zeloapi')
 
 app.use(express.static(__dirname + '/public'));
+
+app.use(basicAuth({
+    users: { 'zeloapi-user': 'DCG123' },
+    unauthorizedResponse: getUnauthorizedResponse
+}))
 
 app.get('/', function(request, response) {
   response.render('public/index');
@@ -29,3 +35,9 @@ routes(app);
 app.listen(port);
 
 console.log('Zelo Mock API started on: ' + port);
+
+function getUnauthorizedResponse(request) {
+    return request.auth ?
+        ('Credenciais ' + request.auth.user + ':' + request.auth.password + ' inválidas') :
+        'Preencha usuario e senha da api'
+}

@@ -33,7 +33,7 @@ function Find(transactionId, callback){
 function GetAllByCard(cardId, callback){
   callback = callback || function(){};
   GetAll(function(transactions){
-    var transaction = lodash.filter(transactions, function(t) { return t.card_id == cardId } );
+    var transaction = lodash.filter(transactions, function(t) { return t.card_id.toLowerCase() == cardId.toLowerCase() } );
     return callback(transaction);
   });
 }
