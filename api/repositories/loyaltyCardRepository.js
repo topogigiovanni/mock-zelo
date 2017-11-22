@@ -34,6 +34,8 @@ function Create(card){
 function Find(cardId, email = "", documentNumber = "", callback){
   callback = callback || function(){};
   GetAll(function(cards){
+    if(cardId == null)
+      cardId = "";
     var card = lodash.find(cards, function(c) { return c.card_id.toLowerCase() == cardId.toLowerCase() || c.email == email || c.document_number == documentNumber } );
     return callback(card);
   });

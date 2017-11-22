@@ -24,6 +24,9 @@ function GetAll(callback){
 function Find(cardId, email, callback){
   callback = callback || function(){};
   GetAll(function(cards){
+    if(cardId == null)
+      cardId = "";
+
     var card = lodash.find(cards, function(c) { return c.card_id.toLowerCase() == cardId.toLowerCase() || c.email == email } );
     return callback(card);
   });
