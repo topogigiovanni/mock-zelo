@@ -71,6 +71,8 @@ exports.find = function(request, response){
 
 exports.balance = function(request, response){
 	try	{
+		console.log("chegou aqui");
+
 		console.log(request.body);
 		var cardId = request.body.card_id;
   		var documentNumber = request.body.document_number;
@@ -138,6 +140,10 @@ exports.capture = function(request, response){
 
 exports.statementHtml = function(request, response){
 	try{
+
+		console.log("chegou aqui")
+
+
 		var cardId = request.body.card_id;
   		var documentNumber = request.body.document_number;
   		var email = request.body.email;
@@ -181,12 +187,11 @@ function GetHtml(card, callback){
 			for (var i = 0; i < transactions.length; i++) {
 				var transaction = transactions[i];
 
-				var date = new Date(transaction.captured_date);
-				var formattedDate = date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear();
+				var date = new Date(transaction.captured_date).toLocaleString("pt-BR");
 
 				var htmlTransaction = "<tr>";
 				htmlTransaction += "<td>"+transaction._id+"</td>";
-				htmlTransaction += "<td>"+formattedDate+"</td>";
+				htmlTransaction += "<td>"+date+"</td>";
 				htmlTransaction += "<td>"+transaction.captured_value+"</td>";
 				htmlTransaction += "</tr>";
 
