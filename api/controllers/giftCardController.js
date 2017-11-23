@@ -92,7 +92,6 @@ exports.capture = function(request, response){
 	try{
 		var orderNumber = request.body.order_number;
   		var cards = request.body.cards;
-
   		var arrayCards = new Array();
   		var retorno;
   		for(var i = 0; i < cards.length; i++){
@@ -100,6 +99,7 @@ exports.capture = function(request, response){
   			var cont = 0;
   			repository.Find(c.card_id, c.email, function(card){
 
+          console.log(card);
   				if(retorno) return false;
 
       			if(card == null){
@@ -108,32 +108,38 @@ exports.capture = function(request, response){
       				retorno = true;
       			}
 
-      			if(!card.is_valid){
+      			else if(!card.is_valid){
       				response.status(400);
       				response.send("Cartão " + c.card_id + " inválido");
       				retorno = true;
       			}
 
-      			card.is_valid = false;
-      			repository.Update(card);
-      			
-      			//criar transaction referente a esta captura
-      			transactionRepository.Create(card.card_id, "giftcard", orderNumber, 0, function(transactionId){
-      				cont++;
-      				var responseCard = {
-	    				'transaction_id': transactionId,
-	    				'card_id': card.card_id,
-	    				'is_valid': card.is_valid,
-	    				'balance': card.balance,
-	    				'message': card.message
-    				}
+            else {
+              card.is_valid = false;
+              repository.Update(card);
+              
+              //criar transaction referente a esta captura
+              transactionRepository.Create(card.card_id, "giftcard", orderNumber, 0, function(transactionId){
+                cont++;
+                var responseCard = {
+                  'transaction_id': transactionId,
+                  'card_id': card.card_id,
+                  'is_valid': card.is_valid,
+                  'balance': card.balance,
+                  'message': card.message
+                  }
 
-      				arrayCards.push(responseCard);
-      				
-      				if(cont == cards.length){
-    					response.json(arrayCards);
-					}
-    			});
+                arrayCards.push(responseCard);
+                
+                if(cont == cards.length){
+                  response.json(arrayCards);
+                }
+
+              });
+            }
+
+      			
+    			
     		});    		
   		}
 	}

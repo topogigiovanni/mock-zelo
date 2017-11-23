@@ -27,7 +27,12 @@ function Find(cardId, email, callback){
     if(cardId == null)
       cardId = "";
 
-    var card = lodash.find(cards, function(c) { return c.card_id.toLowerCase() == cardId.toLowerCase() || c.email == email } );
+    var card;
+    if(cardId != null)
+      card = lodash.find(cards, function(c) { return c.card_id.toLowerCase() == cardId.toLowerCase()} );
+    else
+      card = lodash.find(cards, function(c) { return c.email == email } );
+    
     return callback(card);
   });
 }
