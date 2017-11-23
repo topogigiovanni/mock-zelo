@@ -18,6 +18,10 @@ app.get('/', function(request, response) {
   response.render('public/index');
 });
 
+app.get('/docs', function(request, response) {
+  response.sendFile(__dirname + '/public/documentacao.html');
+});
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
