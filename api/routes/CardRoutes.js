@@ -21,11 +21,10 @@ module.exports = function(app){
 	app.post('/giftcard/capture', basicAuthMiddle, giftCard.capture);
 	app.post('/giftcard/balance', basicAuthMiddle, giftCard.balance);
 
-
 	//loyaltycard routes
 	app.get('/loyaltycard', basicAuthMiddle, loyaltyCard.list);
 	app.post('/loyaltycard/create', basicAuthMiddle, loyaltyCard.create);
-	app.get('/loyaltycard/find'), basicAuthMiddle, loyaltyCard.find);
+	app.get('/loyaltycard/find', basicAuthMiddle, loyaltyCard.find);
 	app.post('/loyaltycard/balance', basicAuthMiddle, loyaltyCard.balance);
 	app.post('/loyaltycard/capture', basicAuthMiddle, loyaltyCard.capture);
 	app.post('/loyaltycard/statementHtml', basicAuthMiddle, loyaltyCard.statementHtml);
