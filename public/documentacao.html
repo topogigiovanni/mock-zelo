@@ -249,12 +249,14 @@
                                     //RESPONSE
                                     {
                                         "transaction_id": "5a16b5eec17bc1000469d249",
-                                        "card_id": "LO-00001",
-                                        "document_number": "74151037268",
-                                        "email": "email@ezcommerce.com.br",
+                                        "card": {
+                                            "card_id": "LO-00001",
+                                            "document_number": "74151037268",
+                                            "email": "email@ezcommerce.com.br",
+                                            "balance": "180.60"
+                                        },                                        
                                         "is_valid": true,
-                                        "balance": "116.43",
-                                        "message": "Mensagem cartão fidelidade"
+                                        "message": "Mensagem retorno"
                                     }
                                 </pre>
                             </div>
@@ -285,10 +287,10 @@
                                         "card": {
                                             "card_id": "LO-00001",
                                             "document_number": "74151037268",
-                                            "email": "email@ezcommerce.com.br",
-                                            "is_valid": true,
-                                            "message": "Mensagem cartão fidelidade"
+                                            "email": "email@ezcommerce.com.br"
                                         },
+                                        "is_valid": true,
+                                        "message": "Mensagem retorno",
                                         "html": "<div> {{ Html referente as transações }} </div>"
                                     }
                                 </pre>
