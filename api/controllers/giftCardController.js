@@ -94,6 +94,7 @@ exports.capture = function(request, response){
   		var cards = request.body.cards;
   		var arrayCards = new Array();
   		var retorno;
+      var mensagem;
   		for(var i = 0; i < cards.length; i++){
   			var c = cards[i];
   			var cont = 0;
@@ -116,6 +117,7 @@ exports.capture = function(request, response){
 
             else {
               card.is_valid = false;
+              card.balance = 0;
               repository.Update(card);
               
               //criar transaction referente a esta captura
@@ -124,7 +126,7 @@ exports.capture = function(request, response){
                 var responseCard = {
                   'transaction_id': transactionId,
                   'card_id': card.card_id,
-                  'is_valid': card.is_valid,
+                  'is_valid': true,
                   'balance': card.balance,
                   'message': card.message
                   }
