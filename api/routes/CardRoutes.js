@@ -15,40 +15,20 @@ module.exports = function(app){
 	});
 
   	//giftcard routes
-	app.route('/giftcard', basicAuthMiddle)
-		.get(giftCard.list);
-
-	app.route('/giftcard/find')
-		.get(giftCard.find);
-
-	app.route('/giftcard/create')
-		.post(giftCard.create);
-
-	app.route('/giftcard/capture')
-		.post(giftCard.capture);
-
-	app.route('/giftcard/balance')
-		.post(giftCard.balance);
+	app.get('/giftcard', basicAuthMiddle, giftCard.list);
+	app.get('/giftcard/find', basicAuthMiddle,giftCard.find);
+	app.post('/giftcard/create', basicAuthMiddle, giftCard.create);
+	app.post('/giftcard/capture', basicAuthMiddle, giftCard.capture);
+	app.post('/giftcard/balance', basicAuthMiddle, giftCard.balance);
 
 
 	//loyaltycard routes
-	app.route('/loyaltycard')
-		.get(loyaltyCard.list);
-
-	app.route('/loyaltycard/create')
-		.post(loyaltyCard.create);
-
-	app.route('/loyaltycard/find')
-		.get(loyaltyCard.find);
-
-	app.route('/loyaltycard/balance')
-		.post(loyaltyCard.balance);
-
-	app.route('/loyaltycard/capture')
-		.post(loyaltyCard.capture);
-
-	app.route('/loyaltycard/statementHtml')
-		.post(loyaltyCard.statementHtml);
+	app.get('/loyaltycard', basicAuthMiddle, loyaltyCard.list);
+	app.post('/loyaltycard/create', basicAuthMiddle, loyaltyCard.create);
+	app.get('/loyaltycard/find'), basicAuthMiddle, loyaltyCard.find);
+	app.post('/loyaltycard/balance', basicAuthMiddle, loyaltyCard.balance);
+	app.post('/loyaltycard/capture', basicAuthMiddle, loyaltyCard.capture);
+	app.post('/loyaltycard/statementHtml', basicAuthMiddle, loyaltyCard.statementHtml);
 
 
 	//transaction routes
