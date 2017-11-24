@@ -5,8 +5,17 @@ module.exports = function(app){
 	var loyaltyCard = require('../controllers/loyaltyCardController');
 	var transaction = require('../controllers/transactionController');
 
+	var express = require('express'),
+		basicAuth = require('express-basic-auth');
+
+
+	var basicAuthMiddle = basicAuth({
+    	users: { 'zeloapi-user': 'DCG123' },
+    	unauthorizedResponse: getUnauthorizedResponse
+	});
+
   	//giftcard routes
-	app.route('/giftcard')
+	app.route('/giftcard', basicAuthMiddle)
 		.get(giftCard.list);
 
 	app.route('/giftcard/find')
@@ -50,3 +59,10 @@ module.exports = function(app){
 		.get(transaction.find);
   
 };
+
+function getUnauthorizedResponse(request) {
+    return request.auth ?
+        ('Credenciais ' + request.auth.user + ':' + request.auth.password + ' inválidas') :
+        'Preencha usuario e senha da api'
+}
+
