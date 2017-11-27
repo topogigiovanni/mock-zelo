@@ -33,9 +33,10 @@ function Find(transactionId, callback){
 function GetAllByCard(cardId, callback){
   callback = callback || function(){};
   GetAll(function(transactions){
+    console.log("CardId" + cardId);
     if(cardId == null)
       cardId = "";
-    var transaction = lodash.filter(transactions, function(t) { return t.card_id.toLowerCase() == cardId.toLowerCase() } );
+    var transaction = lodash.filter(transactions, function(t) { return t.card_id == cardId } );
     return callback(transaction);
   });
 }

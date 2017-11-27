@@ -78,6 +78,8 @@ exports.balance = function(request, response){
           response.send("Cartão não encontrado");
         }
 
+        card.balance = card.balance.toLocaleString('pt-BR');
+
         response.json(card);
     });
         

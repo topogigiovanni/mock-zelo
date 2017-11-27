@@ -84,6 +84,8 @@ exports.balance = function(request, response){
   				response.send("Cartão não encontrado");
   			}
 
+  			card.balance = card.balance.toLocaleString('pt-BR');
+
   			response.json(card);
 		});
       	
@@ -140,10 +142,6 @@ exports.capture = function(request, response){
 
 exports.statementHtml = function(request, response){
 	try{
-
-		console.log("chegou aqui")
-
-
 		var cardId = request.body.card_id;
   		var documentNumber = request.body.document_number;
   		var email = request.body.email;
@@ -152,8 +150,8 @@ exports.statementHtml = function(request, response){
   			if(card == null){
   				response.status(400);
   				response.send("Cartão não encontrado");
-  			}
-  			GetHtml(card, function(html){
+  			}else{
+  				GetHtml(card, function(html){
   				var cardResponse = {
 	  				"card": {
 	  					"card_id": card.card_id,
@@ -167,6 +165,8 @@ exports.statementHtml = function(request, response){
 
   				response.json(cardResponse);
   			});
+  			}
+  			
 		});
 	}
 	catch(err){
@@ -177,12 +177,14 @@ exports.statementHtml = function(request, response){
 
 
 function GetHtml(card, callback){
+	console.log("GetHtml")
 	callback = callback || function(){};
 	var html = "";
 	html += "<html><body><h2>Saldo atual: " + card.balance;
 	html += " </h2><table><thead><tr><th>Transaction Id</th><th>Data</th><th>Valor</th></tr></thead><tbody>";
-
+	console.log("Card: "+card);
 	transactionRepository.GetAllByCard(card.card_id, function(transactions){
+		console.log("Transactions: " + transactions);
 		if(transactions != null){
 			for (var i = 0; i < transactions.length; i++) {
 				var transaction = transactions[i];

@@ -31,12 +31,17 @@ function Create(card){
   });
 }
 
-function Find(cardId, email = "", documentNumber = "", callback){
+function Find(cardId, email = null, documentNumber = null, callback){
   callback = callback || function(){};
+
   GetAll(function(cards){
-    if(cardId == null)
-      cardId = "";
-    var card = lodash.find(cards, function(c) { return c.card_id.toLowerCase() == cardId.toLowerCase() || c.email == email || c.document_number == documentNumber } );
+    if(cardId != null)
+      card = lodash.find(cards, function(c) { return c.card_id.toLowerCase() == cardId.toLowerCase()} );
+    else if(email != null)
+      card = lodash.find(cards, function(c) { return c.email == email } );
+    else
+      card = lodash.find(cards, function(c) { return c.document_number == documentNumber } );
+
     return callback(card);
   });
 }
