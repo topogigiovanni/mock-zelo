@@ -78,7 +78,9 @@ exports.balance = function(request, response){
           response.send("Cartão não encontrado");
         }
 
-        card.balance = card.balance.toLocaleString('pt-BR');
+        card.balance = card.balance.replace(".", ",");
+        
+        console.log(card);
 
         response.json(card);
     });
@@ -152,4 +154,3 @@ exports.capture = function(request, response){
 		response.send("Não foi possível capturar. Erro: " + err);
 	}
 }
-
